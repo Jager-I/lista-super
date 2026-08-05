@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Comparte - Lista de Compras</title>
+    <meta name="description" content="Una aplicación para compartir listas de supermercado con amigos en tiempo real.">
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Iconos (Phosphor Icons) -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="app-container">
+        <header class="app-header">
+            <div class="header-title">
+                <i class="ph ph-shopping-cart"></i>
+                <h1>Super Comparte</h1>
+            </div>
+            <button id="share-btn" class="btn-share" aria-label="Compartir lista">
+                <i class="ph ph-share-network"></i>
+                <span>Compartir</span>
+            </button>
+        </header>
+
+        <section class="add-item-section">
+            <form id="add-item-form" class="add-item-form">
+                <div class="input-group">
+                    <input type="text" id="item-input" placeholder="Ej: Manzanas, Leche..." required autocomplete="off">
+                    <button type="submit" class="btn-add" aria-label="Añadir producto">
+                        <i class="ph ph-plus"></i>
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <section class="shopping-list-section">
+            <div class="list-header">
+                <h2>Tu carrito</h2>
+                <span id="items-count" class="badge">0</span>
+            </div>
+            
+            <ul id="shopping-list" class="shopping-list">
+                <!-- Los items se renderizarán aquí vía JS -->
+            </ul>
+            
+            <div id="empty-state" class="empty-state hidden">
+                <i class="ph ph-basket"></i>
+                <p>La lista está vacía. ¡Añade algunos productos!</p>
+            </div>
+        </section>
+        
+        <div id="toast" class="toast hidden">
+            <!-- Mensajes de feedback -->
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
