@@ -14,16 +14,38 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <!-- Modal de Bienvenida (Login) -->
+    <div id="login-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-icon">
+                <i class="ph ph-hand-waving"></i>
+            </div>
+            <h2>¡Hola! ¿Cómo te llamas?</h2>
+            <p>Tus amigos verán los productos que añadas a la lista.</p>
+            <form id="login-form">
+                <input type="text" id="username-input" placeholder="Escribe tu nombre..." required autocomplete="off">
+                <button type="submit" class="btn-primary">Entrar a la Lista</button>
+            </form>
+        </div>
+    </div>
+
     <main class="app-container">
         <header class="app-header">
             <div class="header-title">
                 <i class="ph ph-shopping-cart"></i>
                 <h1>Super Comparte</h1>
             </div>
-            <button id="share-btn" class="btn-share" aria-label="Compartir lista">
-                <i class="ph ph-share-network"></i>
-                <span>Compartir</span>
-            </button>
+            <div class="header-actions">
+                <button id="logs-btn" class="btn-icon" aria-label="Ver actividad">
+                    <i class="ph ph-bell"></i>
+                    <span id="logs-badge" class="badge-dot hidden"></span>
+                </button>
+                <button id="share-btn" class="btn-share" aria-label="Compartir lista">
+                    <i class="ph ph-share-network"></i>
+                    <span class="desktop-only">Compartir</span>
+                </button>
+            </div>
         </header>
 
         <section class="add-item-section">
@@ -56,6 +78,20 @@
         <div id="toast" class="toast hidden">
             <!-- Mensajes de feedback -->
         </div>
+
+        <!-- Panel de Actividad (Logs) -->
+        <div id="logs-panel" class="logs-panel hidden">
+            <div class="logs-header">
+                <h3>Actividad Reciente</h3>
+                <button id="close-logs-btn" class="btn-icon" aria-label="Cerrar panel">
+                    <i class="ph ph-x"></i>
+                </button>
+            </div>
+            <ul id="logs-list" class="logs-list">
+                <!-- Los logs se renderizarán aquí -->
+            </ul>
+        </div>
+        
     </main>
 
     <script src="app.js"></script>

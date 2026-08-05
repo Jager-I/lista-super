@@ -2,7 +2,6 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     
-    // Manejar las rutas de la API
     if (url.pathname.startsWith('/api/list')) {
       const listId = url.searchParams.get('list') || url.searchParams.get('id');
       
@@ -16,8 +15,11 @@ export default {
       if (request.method === 'GET') {
         try {
           const data = await env.SHOPPING_KV.get(`list_${listId}`);
-          return new Response(data || JSON.stringify({ items: [] }), {
-            headers: { 'Content-Type': 'application/json' }
+          return new Response(data || JSON.stringify({ items: [], logs: [] }), {
+            headers: { 
+              'Content-Type': 'application/json',
+              'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate'
+            }
           });
         } catch (e) {
           return new Response(JSON.stringify({ error: e.message }), { status: 500 });
@@ -37,7 +39,6 @@ export default {
       }
     }
 
-    // Si no es la API, servir los archivos estáticos (HTML, CSS, JS) automáticamente
     return env.ASSETS.fetch(request);
   }
 };
