@@ -41,8 +41,14 @@ async function loadList() {
         const response = await fetch(`/api/list?id=${listId}`);
         if (response.ok) {
             const data = await response.json();
-            shoppingList = data.items || [];
-            renderList();
+            const newItems = data.items || [];
+            
+            // Comprobar si hay cambios reales antes de re-renderizar
+            // Esto evita que la lista parpadee o se mueva mientras el usuario interactúa
+            if (JSON.stringify(shoppingList) !== JSON.stringify(newItems)) {
+                shoppingList = newItems;
+                renderList();
+            }
         } else {
             console.error("Error cargando la lista");
         }
@@ -51,8 +57,11 @@ async function loadList() {
         // Fallback local en caso de error (para desarrollo visual)
         const localData = localStorage.getItem(`list_${listId}`);
         if (localData) {
-            shoppingList = JSON.parse(localData);
-            renderList();
+            const parsedLocal = JSON.parse(localData);
+            if (JSON.stringify(shoppingList) !== JSON.stringify(parsedLocal)) {
+                shoppingList = parsedLocal;
+                renderList();
+            }
         }
     }
 }
