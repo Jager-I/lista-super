@@ -1,0 +1,7 @@
+name = "lista-super"
+compatibility_date = "2024-03-20"
+pages_build_output_dir = "."
+
+[[kv_namespaces]]
+binding = "SHOPPING_KV"
+id = "13cc99b0dd0e4927a743ec453664ac02"
